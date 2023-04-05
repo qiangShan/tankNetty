@@ -7,8 +7,8 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    private static final int GAME_WIDTH=960;
-    private static final int GAME_HEIGHT=720;
+    public static final int GAME_WIDTH=960;
+    public static final int GAME_HEIGHT=720;
 
     Tank myTank=new Tank(300,300,Dir.DOWN,this);
     List<Bullet> bullets=new ArrayList<Bullet>();
@@ -48,9 +48,18 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g){
+        Color color = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("子弹的数量："+bullets.size(),10,60);
+        g.setColor(color);
 
+        //画出主战坦克
         myTank.paint(g);
-        b.paint(g);
+
+        //画出子弹
+        for(int i=0; i<bullets.size(); i++){
+            bullets.get(i).paint(g);
+        }
 
     }
 
