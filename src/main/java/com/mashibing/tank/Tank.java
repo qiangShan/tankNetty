@@ -21,9 +21,18 @@ public class Tank {
     }
 
 
+
     public void paint(Graphics g) {
+        Color color=g.getColor();
+        g.setColor(Color.YELLOW);
         g.fillRect(x, y, WIDTH, HEIGHT);
+        g.setColor(color);
+
         move();
+    }
+
+    public void fire(){
+
     }
 
     private void move() {
@@ -80,4 +89,5 @@ public class Tank {
     public void setMoving(boolean moving) {
         this.moving = moving;
     }
+
 }

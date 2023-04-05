@@ -20,7 +20,7 @@ public class Bullet {
     public void paint(Graphics g){
         Color color = g.getColor();
         g.setColor(Color.RED);
-        g.fillRect(x,y,WIDTH,HEIGHT);
+        g.fillOval(x,y,WIDTH,HEIGHT);
         g.setColor(color);
 
         move();

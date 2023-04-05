@@ -28,6 +28,22 @@ public class TankFrame extends Frame {
         });
     }
 
+    //解决游戏中的双闪问题
+    Image offScreenImage=null;
+    @Override
+    public void update(Graphics graphics){
+        if(offScreenImage == null){
+            offScreenImage=this.createImage(GAME_WIDTH,GAME_HEIGHT);
+        }
+        Graphics gOffSecreen = offScreenImage.getGraphics();
+        Color color=gOffSecreen.getColor();
+        gOffSecreen.setColor(Color.BLACK);
+        gOffSecreen.fillRect(0,0,GAME_WIDTH,GAME_HEIGHT);
+        gOffSecreen.setColor(color);
+        paint(gOffSecreen);
+        graphics.drawImage(offScreenImage,0,0,null);
+    }
+
     @Override
     public void paint(Graphics g){
 
@@ -61,6 +77,9 @@ public class TankFrame extends Frame {
                     break;
                 case KeyEvent.VK_DOWN:
                     bD=true;
+                    break;
+                case KeyEvent.VK_CONTROL:
+                    //myTank.fire();
                     break;
                 default:
                     break;
