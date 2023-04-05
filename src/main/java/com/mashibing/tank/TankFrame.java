@@ -3,15 +3,17 @@ package com.mashibing.tank;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class TankFrame extends Frame {
 
-    private static final int GAME_WIDTH=960;
-    private static final int GAME_HEIGHT=720;
+    public static final int GAME_WIDTH=960;
+    public static final int GAME_HEIGHT=720;
 
     Tank myTank=new Tank(300,300,Dir.DOWN,this);
-    List<Bullet> bullets=new ArrayList<Bullet>();
+    public List<Bullet> bullets=new ArrayList<Bullet>();
+    public List<Tank> tanks=new ArrayList<Tank>();
 
 
     public TankFrame (){
@@ -48,10 +50,31 @@ public class TankFrame extends Frame {
 
     @Override
     public void paint(Graphics g){
+        Color color = g.getColor();
+        g.setColor(Color.WHITE);
+        g.drawString("子弹的数量："+bullets.size(),10,60);
+        g.setColor(color);
 
+        //画出主战坦克
         myTank.paint(g);
-        b.paint(g);
 
+        //画出子弹
+        for(int i=0; i<bullets.size(); i++){
+            bullets.get(i).paint(g);
+        }
+
+        //画出敌方坦克
+        for(int i=0;i<tanks.size();i++){
+            tanks.get(i).paint(g);
+        }
+
+        /**
+        for(Iterator<Bullet> iterator = bullets.iterator();iterator.hasNext();){
+            Bullet b = iterator.next();
+            if(!b.live)
+                iterator.remove();
+        }
+         */
     }
 
     class MyKeyListener extends KeyAdapter{ //获取键盘

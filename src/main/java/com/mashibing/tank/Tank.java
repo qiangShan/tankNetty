@@ -6,7 +6,7 @@ public class Tank {
 
     private static final int WIDTH = 50;
     private static final int HEIGHT = 50;
-    private static final int SPEED = 3;
+    private static final int SPEED = 5;
 
     private boolean moving=false;
 
@@ -34,7 +34,7 @@ public class Tank {
     }
 
     public void fire(){
-        tf.b=new Bullet(this.x,this.y,this.dir);
+        tf.bullets.add(new Bullet(this.x,this.y,this.dir,this.tf));
     }
 
     private void move() {
