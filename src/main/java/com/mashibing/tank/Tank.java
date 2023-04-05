@@ -13,11 +13,13 @@ public class Tank {
     private int x, y;
 
     private Dir dir = Dir.DOWN;
+    TankFrame tf;
 
-    public Tank(int x, int y, Dir dir) {
+    public Tank(int x, int y, Dir dir,TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
+        this.tf=tf;
     }
 
 
@@ -32,7 +34,7 @@ public class Tank {
     }
 
     public void fire(){
-
+        tf.b=new Bullet(this.x,this.y,this.dir);
     }
 
     private void move() {
