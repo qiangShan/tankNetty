@@ -9,6 +9,7 @@ public class Tank {
     private static final int SPEED = 5;
 
     private boolean moving=false;
+    private boolean living=true;
 
     private int x, y;
 
@@ -25,6 +26,9 @@ public class Tank {
 
 
     public void paint(Graphics g) {
+
+        if(!living)
+            tf.tanks.remove(this);
 
         switch (dir){
             case LEFT:
@@ -74,6 +78,9 @@ public class Tank {
         }
     }
 
+    public void die() {
+        this.living=false;
+    }
 
     public int getX() {
         return x;
@@ -107,4 +114,11 @@ public class Tank {
         this.moving = moving;
     }
 
+    public boolean isLiving() {
+        return living;
+    }
+
+    public void setLiving(boolean living) {
+        this.living = living;
+    }
 }
