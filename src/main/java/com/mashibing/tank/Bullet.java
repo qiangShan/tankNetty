@@ -5,8 +5,8 @@ import java.awt.*;
 public class Bullet {
 
     private static final int SPEED=10;
-    private static final int WIDTH=30;
-    private static final int HEIGHT=30;
+    private static final int WIDTH=ResourceMgr.bulletL.getWidth();
+    private static final int HEIGHT=ResourceMgr.bulletL.getHeight();
 
     private boolean live=true;
 
@@ -27,10 +27,22 @@ public class Bullet {
             tf.bullets.remove(this);
         }
 
-        Color color = g.getColor();
-        g.setColor(Color.RED);
-        g.fillOval(x,y,WIDTH,HEIGHT);
-        g.setColor(color);
+        switch (dir){
+            case LEFT:
+                g.drawImage(ResourceMgr.bulletL,x,y,null);
+                break;
+            case UP:
+                g.drawImage(ResourceMgr.bulletU,x,y,null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.bulletR,x,y,null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.bulletD,x,y,null);
+                break;
+            default:
+                break;
+        }
 
         move();
     }
