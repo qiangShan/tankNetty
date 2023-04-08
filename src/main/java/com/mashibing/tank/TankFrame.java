@@ -14,6 +14,7 @@ public class TankFrame extends Frame {
     Tank myTank=new Tank(300,600,Dir.DOWN,Group.GOOD,this);
     public List<Bullet> bullets=new ArrayList<Bullet>();
     public List<Tank> tanks=new ArrayList<Tank>();
+    Explode e=new Explode(100,100,this);
 
 
     public TankFrame (){
@@ -74,6 +75,8 @@ public class TankFrame extends Frame {
                 bullets.get(i).collideWith(tanks.get(j));
             }
         }
+
+        e.paint(g);
 
         /**
         for(Iterator<Bullet> iterator = bullets.iterator();iterator.hasNext();){
