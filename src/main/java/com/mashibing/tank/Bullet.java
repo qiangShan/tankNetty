@@ -5,8 +5,8 @@ import java.awt.*;
 public class Bullet {
 
     private static final int SPEED=10;
-    private static final int WIDTH=ResourceMgr.bulletL.getWidth();
-    private static final int HEIGHT=ResourceMgr.bulletL.getHeight();
+    public static final int WIDTH=ResourceMgr.bulletL.getWidth();
+    public static final int HEIGHT=ResourceMgr.bulletL.getHeight();
 
     private boolean live=true;
 
