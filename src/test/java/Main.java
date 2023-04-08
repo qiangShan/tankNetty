@@ -1,4 +1,5 @@
 import com.mashibing.tank.Dir;
+import com.mashibing.tank.Group;
 import com.mashibing.tank.Tank;
 import com.mashibing.tank.TankFrame;
 
@@ -10,7 +11,7 @@ public class Main {
         //初始化敌方坦克
         int initTankCount=10;
         for(int i=0;i<initTankCount;i++){
-            tf.tanks.add(new Tank(50+i*80,200, Dir.DOWN,tf));
+            tf.tanks.add(new Tank(50+i*80,200, Dir.DOWN, Group.BAD,tf));
         }
 
         while(true){
