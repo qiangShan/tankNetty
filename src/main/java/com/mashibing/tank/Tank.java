@@ -4,8 +4,8 @@ import java.awt.*;
 
 public class Tank {
 
-    private static final int WIDTH = 50;
-    private static final int HEIGHT = 50;
+    private static final int WIDTH = ResourceMgr.tankD.getWidth();
+    private static final int HEIGHT = ResourceMgr.tankD.getHeight();
     private static final int SPEED = 5;
 
     private boolean moving=false;
@@ -25,11 +25,23 @@ public class Tank {
 
 
     public void paint(Graphics g) {
-        Color color=g.getColor();
-        g.setColor(Color.YELLOW);
-        g.fillRect(x, y, WIDTH, HEIGHT);
-        g.setColor(color);
 
+        switch (dir){
+            case LEFT:
+                g.drawImage(ResourceMgr.tankL,x,y,null);
+                break;
+            case UP:
+                g.drawImage(ResourceMgr.tankU,x,y,null);
+                break;
+            case RIGHT:
+                g.drawImage(ResourceMgr.tankR,x,y,null);
+                break;
+            case DOWN:
+                g.drawImage(ResourceMgr.tankD,x,y,null);
+                break;
+            default:
+                break;
+        }
         move();
     }
 
