@@ -12,6 +12,8 @@ public class Tank {
     private boolean moving=true;
     private boolean living=true;
 
+    Rectangle rect=new Rectangle();
+
     private int x, y;
     private Group group=Group.BAD;
 
@@ -26,6 +28,12 @@ public class Tank {
         this.dir = dir;
         this.group=group;
         this.tf=tf;
+
+
+        rect.x=this.x;
+        rect.y=this.y;
+        rect.width=WIDTH;
+        rect.height=HEIGHT;
     }
 
 
@@ -81,12 +89,18 @@ public class Tank {
             default:
                 break;
         }
+
         if(this.group == Group.BAD && random.nextInt(100)>95)
             this.fire();
+
         if(this.group == Group.BAD && random.nextInt(100)>95)
             randomDir();
 
         boundsCheck();
+
+        //update rect
+        rect.x=this.x;
+        rect.y=this.y;
     }
 
     //边界检测
