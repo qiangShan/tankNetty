@@ -9,7 +9,7 @@ public class Explode {
 
     private int x,y;
 
-    private boolean living=true;
+    //private boolean living=true;
 
     TankFrame tf=null;
 
@@ -51,11 +51,4 @@ public class Explode {
         this.y = y;
     }
 
-    public boolean isLiving() {
-        return living;
-    }
-
-    public void setLiving(boolean living) {
-        this.living = living;
-    }
 }
