@@ -40,8 +40,7 @@ public class Tank {
                 g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankL: ResourceMgr.badTankL, x, y,null);
                 break;
             case UP:
-                g.drawImage(ResourceMgr.goodTankU,x,y,null);
-                //g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU: ResourceMgr.badTankU, x, y,null);
+                g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankU: ResourceMgr.badTankU, x, y,null);
                 break;
             case RIGHT:
                 g.drawImage(this.group == Group.GOOD ? ResourceMgr.goodTankR: ResourceMgr.badTankR, x, y,null);
@@ -82,17 +81,19 @@ public class Tank {
             default:
                 break;
         }
-        //randomDir();
-        if(random.nextInt(100)>95)
+        if(this.group == Group.BAD && random.nextInt(100)>95)
             this.fire();
+        if(this.group == Group.BAD && random.nextInt(100)>95)
+            randomDir();
     }
+
+    private void randomDir() {
+        this.dir=Dir.values()[random.nextInt(4)];
+    }
+
 
     public void die() {
         this.living=false;
-        int eX=this.x+Tank.WIDTH/2-Explode.WIDTH/2;
-        int eY=this.y+Tank.HEIGHT/2-Explode.HEIGHT/2;
-
-        tf.explodes.add(new Explode(eX,eY,tf));
     }
 
     public int getX() {
