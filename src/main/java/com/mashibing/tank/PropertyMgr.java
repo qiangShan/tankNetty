@@ -5,10 +5,11 @@ import java.util.Properties;
 
 public class PropertyMgr {
 
-    private static final PropertyMgr INSTANCE=new PropertyMgr();
+    //private static final PropertyMgr INSTANCE=new PropertyMgr();
 
     static Properties properties=new Properties();
 
+    /**
     private PropertyMgr(){
 
     }
@@ -16,6 +17,7 @@ public class PropertyMgr {
     public PropertyMgr getInstance(){
         return INSTANCE;
     }
+     */
 
     static {
         try {

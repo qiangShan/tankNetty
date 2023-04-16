@@ -11,6 +11,16 @@ public class ResourceMgr {
     public static  BufferedImage bulletL,bulletU,bulletR,bulletD;
     public static BufferedImage[] explodes=new BufferedImage[16];
 
+    private static final ResourceMgr INSTANCE=new ResourceMgr();
+
+    private ResourceMgr(){
+
+    }
+
+    public static ResourceMgr getInstance(){
+        return INSTANCE;
+    }
+
     static{
         try {
             goodTankU= ImageIO.read(ResourceMgr.class.getClassLoader().getResourceAsStream("images/GoodTank1.png"));
