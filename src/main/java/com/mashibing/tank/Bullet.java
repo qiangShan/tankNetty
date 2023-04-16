@@ -1,5 +1,7 @@
 package com.mashibing.tank;
 
+import com.mashibing.facade.GameModel;
+
 import java.awt.*;
 
 public class Bullet {
@@ -14,16 +16,16 @@ public class Bullet {
 
     private int x ,y;
     private Dir dir=Dir.DOWN;
-    private TankFrame tf=null;
+    GameModel gm=null;
 
     Rectangle rect=new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tf) {
+    public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group=group;
-        this.tf=tf;
+        this.gm=gm;
 
         rect.x=this.x;
         rect.y=this.y;
@@ -34,7 +36,7 @@ public class Bullet {
     public void paint(Graphics g){
 
         if(!living){
-            tf.bullets.remove(this);
+            gm.bullets.remove(this);
         }
 
         switch (dir){
@@ -99,7 +101,7 @@ public class Bullet {
             int eX=this.getX()+Tank.WIDTH/2-Explode.WIDTH/2;
             int eY=this.getY()+Tank.HEIGHT/2-Explode.HEIGHT/2;
 
-            tf.explodes.add(new Explode(eX,eY,tf));
+            gm.explodes.add(new Explode(eX,eY,gm));
         }
 
     }

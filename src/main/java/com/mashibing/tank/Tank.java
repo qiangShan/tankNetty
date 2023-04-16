@@ -1,5 +1,7 @@
 package com.mashibing.tank;
 
+import com.mashibing.facade.GameModel;
+
 import java.awt.*;
 import java.util.Random;
 
@@ -20,14 +22,15 @@ public class Tank {
     private Random random=new Random();
 
     private Dir dir = Dir.DOWN;
-    TankFrame tf;
 
-    public Tank(int x, int y, Dir dir,Group group, TankFrame tf) {
+    GameModel gm=null;
+
+    public Tank(int x, int y, Dir dir,Group group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group=group;
-        this.tf=tf;
+        this.gm=gm;
 
 
         rect.x=this.x;
@@ -41,7 +44,7 @@ public class Tank {
     public void paint(Graphics g) {
 
         if(!living)
-            tf.tanks.remove(this);
+            gm.tanks.remove(this);
 
         switch (dir){
             case LEFT:
@@ -66,7 +69,7 @@ public class Tank {
         int bX=this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
         int bY=this.y+Tank.HEIGHT/2-Bullet.HEIGHT/2;
 
-        tf.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.tf));
+        gm.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.gm));
     }
 
     private void move() {
