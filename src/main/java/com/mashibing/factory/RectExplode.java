@@ -1,32 +1,37 @@
-package com.mashibing.tank;
+package com.mashibing.factory;
 
-import com.mashibing.factory.BaseExplode;
+import com.mashibing.tank.ResourceMgr;
+import com.mashibing.tank.TankFrame;
 
 import java.awt.*;
 
-public class Explode extends BaseExplode {
+public class RectExplode extends BaseExplode{
 
-    public static final int WIDTH=ResourceMgr.explodes[0].getWidth();
+    public static final int WIDTH= ResourceMgr.explodes[0].getWidth();
     public static final int HEIGHT=ResourceMgr.explodes[0].getHeight();
 
     private int x,y;
-
-    //private boolean living=true;
 
     TankFrame tf=null;
 
     private int step=0;
 
-    public Explode(int x, int y, TankFrame tf) {
+    public RectExplode(int x, int y, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.tf = tf;
     }
 
+    @Override
     public void paint(Graphics g){
-        g.drawImage(ResourceMgr.explodes[step++],x,y,null);
-        if(step >= ResourceMgr.explodes.length)
+        Color color=g.getColor();
+        g.setColor(Color.RED);
+        g.fillRect(x,y,10*step,10*step);
+        step++;
+        if(step >= 5)
             tf.explodes.remove(this);
+
+        g.setColor(color);
     }
 
     public static int getWIDTH() {
@@ -52,5 +57,4 @@ public class Explode extends BaseExplode {
     public void setY(int y) {
         this.y = y;
     }
-
 }
