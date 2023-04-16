@@ -1,2 +1,4 @@
 #
 initTankCount=10
+GAME_WIDTH=960
+GAME_HEIGHT=720

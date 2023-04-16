@@ -5,7 +5,17 @@ import java.util.Properties;
 
 public class PropertyMgr {
 
+    private static final PropertyMgr INSTANCE=new PropertyMgr();
+
     static Properties properties=new Properties();
+
+    private PropertyMgr(){
+
+    }
+
+    public PropertyMgr getInstance(){
+        return INSTANCE;
+    }
 
     static {
         try {
@@ -23,7 +33,12 @@ public class PropertyMgr {
         }
     }
 
-    public static void main(String[] args) {
-        System.out.println(PropertyMgr.get("initTankCount"));
+    public static int getInt(String key){
+        if(properties == null){
+            return 0;
+        }else{
+            return Integer.parseInt((String)properties.get(key));
+        }
     }
+
 }

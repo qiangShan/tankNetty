@@ -8,8 +8,8 @@ import java.util.List;
 
 public class TankFrame extends Frame {
 
-    public static final int GAME_WIDTH=960;
-    public static final int GAME_HEIGHT=720;
+    public static final int GAME_WIDTH=PropertyMgr.getInt("GAME_WIDTH");
+    public static final int GAME_HEIGHT=PropertyMgr.getInt("GAME_HEIGHT");
 
     Tank myTank=new Tank(300,600,Dir.DOWN,Group.GOOD,this);
     public List<Bullet> bullets=new ArrayList<Bullet>();
