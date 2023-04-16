@@ -1,14 +1,13 @@
-package com.mashibing.tank;
+package com.mashibing.factory;
 
-import com.mashibing.factory.BaseBullet;
-import com.mashibing.factory.BaseTank;
+import com.mashibing.tank.*;
 
 import java.awt.*;
 
-public class Bullet extends BaseBullet {
+public class RectBullet extends BaseBullet {
 
     private static final int SPEED=10;
-    public static final int WIDTH=ResourceMgr.bulletL.getWidth();
+    public static final int WIDTH= ResourceMgr.bulletL.getWidth();
     public static final int HEIGHT=ResourceMgr.bulletL.getHeight();
 
     private boolean living =true;
@@ -21,7 +20,7 @@ public class Bullet extends BaseBullet {
 
     Rectangle rect=new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tf) {
+    public RectBullet(int x, int y, Dir dir, Group group, TankFrame tf) {
         this.x = x;
         this.y = y;
         this.dir = dir;
@@ -41,6 +40,12 @@ public class Bullet extends BaseBullet {
             tf.bullets.remove(this);
         }
 
+        Color color = g.getColor();
+        g.setColor(Color.YELLOW);
+        g.fillRect(x,y,15,15);
+        g.setColor(color);
+
+        /**
         switch (dir){
             case LEFT:
                 g.drawImage(ResourceMgr.bulletL,x,y,null);
@@ -56,7 +61,9 @@ public class Bullet extends BaseBullet {
                 break;
             default:
                 break;
+
         }
+         */
 
         move();
     }
@@ -88,7 +95,6 @@ public class Bullet extends BaseBullet {
                 living =false;
         }
 
-    @Override
     public void collideWith(BaseTank tank) {
 
         if(this.group == tank.getGroup())
