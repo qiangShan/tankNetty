@@ -1,6 +1,11 @@
 package com.mashibing.tank;
 
+import com.mashibing.strategy.DefaultFireStrategy;
+import com.mashibing.strategy.FireStrategy;
+import com.mashibing.strategy.FourFireStrategy;
+
 import java.awt.*;
+import java.lang.reflect.InvocationTargetException;
 import java.util.Random;
 
 public class Tank {
@@ -14,13 +19,16 @@ public class Tank {
 
     Rectangle rect=new Rectangle();
 
-    private int x, y;
-    private Group group=Group.BAD;
+
+    FireStrategy fireStrategy;
+
+    public int x, y;
+    public Group group=Group.BAD;
 
     private Random random=new Random();
 
-    private Dir dir = Dir.DOWN;
-    TankFrame tf;
+    public Dir dir = Dir.DOWN;
+    public TankFrame tf;
 
     public Tank(int x, int y, Dir dir,Group group, TankFrame tf) {
         this.x = x;
@@ -29,11 +37,26 @@ public class Tank {
         this.group=group;
         this.tf=tf;
 
-
         rect.x=this.x;
         rect.y=this.y;
         rect.width=WIDTH;
         rect.height=HEIGHT;
+
+        if(this.group == Group.GOOD) {
+            String goodFS =(String) PropertyMgr.get("goodFS");
+            try {
+                fireStrategy = (FireStrategy) Class.forName(goodFS).getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            String badFS=(String) PropertyMgr.get("badFS");
+            try {
+                fireStrategy=(FireStrategy) Class.forName(badFS).getDeclaredConstructor().newInstance();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -63,10 +86,7 @@ public class Tank {
     }
 
     public void fire(){
-        int bX=this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
-        int bY=this.y+Tank.HEIGHT/2-Bullet.HEIGHT/2;
-
-        tf.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.tf));
+        fireStrategy.fire(this);
     }
 
     private void move() {

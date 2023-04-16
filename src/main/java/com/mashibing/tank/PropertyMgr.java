@@ -5,17 +5,7 @@ import java.util.Properties;
 
 public class PropertyMgr {
 
-    private static final PropertyMgr INSTANCE=new PropertyMgr();
-
     static Properties properties=new Properties();
-
-    private PropertyMgr(){
-
-    }
-
-    public PropertyMgr getInstance(){
-        return INSTANCE;
-    }
 
     static {
         try {
@@ -28,9 +18,9 @@ public class PropertyMgr {
     public static Object get(String key){
         if(properties == null){
             return null;
-        }else{
-            return properties.get(key);
         }
+        return properties.get(key);
+
     }
 
     public static int getInt(String key){
