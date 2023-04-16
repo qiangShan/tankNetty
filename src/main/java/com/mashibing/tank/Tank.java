@@ -1,9 +1,12 @@
 package com.mashibing.tank;
 
+import com.mashibing.facade.GameModel;
+import com.mashibing.facade.GameObject;
+
 import java.awt.*;
 import java.util.Random;
 
-public class Tank {
+public class Tank extends GameObject {
 
     public static final int WIDTH = ResourceMgr.goodTankD.getWidth();
     public static final int HEIGHT = ResourceMgr.goodTankD.getHeight();
@@ -20,14 +23,17 @@ public class Tank {
     private Random random=new Random();
 
     private Dir dir = Dir.DOWN;
-    TankFrame tf;
 
-    public Tank(int x, int y, Dir dir,Group group, TankFrame tf) {
+    GameModel gm=null;
+
+    //int oldX,oldY
+
+    public Tank(int x, int y, Dir dir,Group group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group=group;
-        this.tf=tf;
+        this.gm=gm;
 
 
         rect.x=this.x;
@@ -36,12 +42,11 @@ public class Tank {
         rect.height=HEIGHT;
     }
 
-
-
+    @Override
     public void paint(Graphics g) {
 
         if(!living)
-            tf.tanks.remove(this);
+            gm.remove(this);
 
         switch (dir){
             case LEFT:
@@ -66,10 +71,13 @@ public class Tank {
         int bX=this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
         int bY=this.y+Tank.HEIGHT/2-Bullet.HEIGHT/2;
 
-        tf.bullets.add(new Bullet(bX,bY,this.dir,this.group,this.tf));
+        gm.add(new Bullet(bX,bY,this.dir,this.group,this.gm));
     }
 
     private void move() {
+
+        //oldX=x;
+        //oldY=y;
 
         if(!moving) return;
 
@@ -111,10 +119,21 @@ public class Tank {
         if(this.y>TankFrame.GAME_HEIGHT-Tank.HEIGHT-2) y=TankFrame.GAME_HEIGHT-Tank.HEIGHT-2;
     }
 
+    public void stop(){
+        moving=false;
+    }
+
     private void randomDir() {
         this.dir=Dir.values()[random.nextInt(4)];
     }
 
+    public Rectangle getRect() {
+        return rect;
+    }
+
+    public void setRect(Rectangle rect) {
+        this.rect = rect;
+    }
 
     public void die() {
         this.living=false;

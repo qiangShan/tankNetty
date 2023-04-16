@@ -1,8 +1,11 @@
 package com.mashibing.tank;
 
+import com.mashibing.facade.GameModel;
+import com.mashibing.facade.GameObject;
+
 import java.awt.*;
 
-public class Bullet {
+public class Bullet extends GameObject {
 
     private static final int SPEED=10;
     public static final int WIDTH=ResourceMgr.bulletL.getWidth();
@@ -14,16 +17,16 @@ public class Bullet {
 
     private int x ,y;
     private Dir dir=Dir.DOWN;
-    private TankFrame tf=null;
+    GameModel gm=null;
 
     Rectangle rect=new Rectangle();
 
-    public Bullet(int x, int y, Dir dir, Group group, TankFrame tf) {
+    public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
         this.x = x;
         this.y = y;
         this.dir = dir;
         this.group=group;
-        this.tf=tf;
+        this.gm=gm;
 
         rect.x=this.x;
         rect.y=this.y;
@@ -31,10 +34,11 @@ public class Bullet {
         rect.height=HEIGHT;
     }
 
+    @Override
     public void paint(Graphics g){
 
         if(!living){
-            tf.bullets.remove(this);
+            gm.remove(this);
         }
 
         switch (dir){
@@ -84,13 +88,11 @@ public class Bullet {
                 living =false;
         }
 
-    public void collideWith(Tank tank) {
+
+    public boolean collideWith(Tank tank) {
 
         if(this.group == tank.getGroup())
-            return;
-
-        //Rectangle rect1=new Rectangle(this.x,this.y,WIDTH,HEIGHT);
-        //Rectangle rect2=new Rectangle(tank.getX(),tank.getY(),Tank.WIDTH,Tank.HEIGHT);
+            return false;
 
         if(rect.intersects(tank.rect)){
             tank.die();
@@ -99,12 +101,16 @@ public class Bullet {
             int eX=this.getX()+Tank.WIDTH/2-Explode.WIDTH/2;
             int eY=this.getY()+Tank.HEIGHT/2-Explode.HEIGHT/2;
 
-            tf.explodes.add(new Explode(eX,eY,tf));
+            gm.add(new Explode(eX,eY,gm));
+
+            return true;
         }
 
+        return false;
     }
 
-    private void die() {
+
+    public void die() {
         this.living=false;
     }
 
@@ -146,5 +152,13 @@ public class Bullet {
 
     public void setGroup(Group group) {
         this.group = group;
+    }
+
+    public Rectangle getRect() {
+        return rect;
+    }
+
+    public void setRect(Rectangle rect) {
+        this.rect = rect;
     }
 }
