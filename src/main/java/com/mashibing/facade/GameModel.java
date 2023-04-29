@@ -7,6 +7,7 @@ import com.mashibing.cor.TankTankCollider;
 import com.mashibing.tank.*;
 
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -86,5 +87,51 @@ public class GameModel {
 
     public Tank getMainTank() {
         return myTank;
+    }
+
+    public void save(){
+        File f=null;
+        FileOutputStream fos= null;
+        ObjectOutputStream oos=null;
+        try {
+            f=new File("tank.data");
+            fos = new FileOutputStream(f);
+            oos=new ObjectOutputStream(fos);
+            oos.writeObject(myTank);
+            oos.writeObject(objects);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(oos != null){
+                try {
+                    oos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void load(){
+        File f=null;
+        FileInputStream fis= null;
+        ObjectInputStream ois=null;
+        try {
+            f=new File("tank.data");
+            fis = new FileInputStream(f);
+            ois=new ObjectInputStream(fis);
+            myTank=(Tank)ois.readObject();
+            objects=(List) ois.readObject();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if(ois != null){
+                try {
+                    ois.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
