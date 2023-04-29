@@ -15,7 +15,6 @@ public class Bullet extends GameObject {
 
     public Group group=Group.BAD;
 
-    private int x ,y;
     private Dir dir=Dir.DOWN;
 
     public Rectangle rect=new Rectangle();
@@ -59,6 +58,16 @@ public class Bullet extends GameObject {
         }
 
         move();
+    }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 
     private void move() {

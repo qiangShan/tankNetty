@@ -1,5 +1,7 @@
 package com.mashibing.tank;
 
+import com.mashibing.decorator.RectDecorator;
+import com.mashibing.decorator.TailDecorator;
 import com.mashibing.facade.GameModel;
 import com.mashibing.facade.GameObject;
 
@@ -17,7 +19,6 @@ public class Tank extends GameObject {
 
     public Rectangle rect=new Rectangle();
 
-    private int x, y;
     public Group group=Group.BAD;
 
     private Random random=new Random();
@@ -63,6 +64,16 @@ public class Tank extends GameObject {
                 break;
         }
         move();
+    }
+
+    @Override
+    public int getWidth() {
+        return WIDTH;
+    }
+
+    @Override
+    public int getHeight() {
+        return HEIGHT;
     }
 
     public void back(){
@@ -111,7 +122,9 @@ public class Tank extends GameObject {
         int bX=this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
         int bY=this.y+Tank.HEIGHT/2-Bullet.HEIGHT/2;
 
-        GameModel.getInstance().add(new Bullet(bX,bY,this.dir,this.group));
+        //Bug ? new Bullet把自己又加了一遍；
+        GameModel.getInstance().add(
+                new TailDecorator(new RectDecorator(new Bullet(bX,bY,this.dir,this.group))));
     }
 
     //边界检测
