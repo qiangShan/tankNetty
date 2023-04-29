@@ -13,13 +13,13 @@ public class Bullet extends GameObject {
 
     private boolean living =true;
 
-    private Group group=Group.BAD;
+    public Group group=Group.BAD;
 
     private int x ,y;
     private Dir dir=Dir.DOWN;
     GameModel gm=null;
 
-    Rectangle rect=new Rectangle();
+    public Rectangle rect=new Rectangle();
 
     public Bullet(int x, int y, Dir dir, Group group, GameModel gm) {
         this.x = x;
@@ -88,7 +88,7 @@ public class Bullet extends GameObject {
                 living =false;
         }
 
-
+    /**
     public boolean collideWith(Tank tank) {
 
         if(this.group == tank.getGroup())
@@ -108,6 +108,7 @@ public class Bullet extends GameObject {
 
         return false;
     }
+     */
 
 
     public void die() {

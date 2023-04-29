@@ -2,3 +2,7 @@
 initTankCount=10
 GAME_WIDTH=960
 GAME_HEIGHT=720
+#colliders
+colliders=com.mashibing.cor.BulletTankCollider,com.mashibing.cor.TankTankCollider
+
+

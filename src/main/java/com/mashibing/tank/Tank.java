@@ -15,18 +15,18 @@ public class Tank extends GameObject {
     private boolean moving=true;
     private boolean living=true;
 
-    Rectangle rect=new Rectangle();
+    public Rectangle rect=new Rectangle();
 
     private int x, y;
-    private Group group=Group.BAD;
+    public Group group=Group.BAD;
 
     private Random random=new Random();
 
     private Dir dir = Dir.DOWN;
 
-    GameModel gm=null;
+    public GameModel gm=null;
 
-    //int oldX,oldY
+    int oldX,oldY;
 
     public Tank(int x, int y, Dir dir,Group group, GameModel gm) {
         this.x = x;
@@ -67,17 +67,15 @@ public class Tank extends GameObject {
         move();
     }
 
-    public void fire(){
-        int bX=this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
-        int bY=this.y+Tank.HEIGHT/2-Bullet.HEIGHT/2;
-
-        gm.add(new Bullet(bX,bY,this.dir,this.group,this.gm));
+    public void back(){
+        x=oldX;
+        y=oldY;
     }
 
     private void move() {
-
-        //oldX=x;
-        //oldY=y;
+        //记录移动之前的位置
+        oldX=x;
+        oldY=y;
 
         if(!moving) return;
 
@@ -111,6 +109,13 @@ public class Tank extends GameObject {
         rect.y=this.y;
     }
 
+    public void fire(){
+        int bX=this.x+Tank.WIDTH/2-Bullet.WIDTH/2;
+        int bY=this.y+Tank.HEIGHT/2-Bullet.HEIGHT/2;
+
+        gm.add(new Bullet(bX,bY,this.dir,this.group,this.gm));
+    }
+
     //边界检测
     private void boundsCheck() {
         if(this.x< 2 ) x=2;
@@ -118,6 +123,7 @@ public class Tank extends GameObject {
         if(this.x>TankFrame.GAME_WIDTH-Tank.WIDTH-2) x=TankFrame.GAME_WIDTH-Tank.WIDTH-2;
         if(this.y>TankFrame.GAME_HEIGHT-Tank.HEIGHT-2) y=TankFrame.GAME_HEIGHT-Tank.HEIGHT-2;
     }
+
 
     public void stop(){
         moving=false;
