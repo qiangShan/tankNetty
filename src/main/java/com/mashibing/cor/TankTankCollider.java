@@ -10,9 +10,9 @@ public class TankTankCollider implements Collider{
         if(o1 instanceof Tank && o2 instanceof Tank){
             Tank t1=(Tank) o1;
             Tank t2=(Tank) o2;
-
             if(t1.getRect().intersects(t2.getRect())){
-                t1.stop();
+                t1.back();
+                t2.back();
             }
         }
         return true;

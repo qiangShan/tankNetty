@@ -4,16 +4,14 @@ import com.mashibing.facade.GameModel;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+
 
 public class TankFrame extends Frame {
 
     public static final int GAME_WIDTH=PropertyMgr.getInt("GAME_WIDTH");
     public static final int GAME_HEIGHT=PropertyMgr.getInt("GAME_HEIGHT");
 
-    GameModel gm=new GameModel();
+    GameModel gm=GameModel.getInstance();
 
     public TankFrame (){
         this.setSize(GAME_WIDTH,GAME_HEIGHT);

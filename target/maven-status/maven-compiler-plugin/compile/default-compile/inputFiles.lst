@@ -1,1 +1,17 @@
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/Explode.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/Tank.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/ImageUtil.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/Bullet.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/Group.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/cor/BulletTankCollider.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/chain/ColliderChain.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/facade/GameModel.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/cor/BulletWallCollider.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/PropertyMgr.java
 /Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/TankFrame.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/cor/TankTankCollider.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/ResourceMgr.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/Dir.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/cor/Collider.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/tank/Wall.java
+/Users/qiangshan/Downloads/tank-master/tankNetty/src/main/java/com/mashibing/facade/GameObject.java
