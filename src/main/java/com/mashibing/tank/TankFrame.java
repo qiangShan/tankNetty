@@ -8,6 +8,8 @@ import java.awt.event.*;
 
 public class TankFrame extends Frame {
 
+    public static final TankFrame INSTANCE=new TankFrame();
+
     public static final int GAME_WIDTH=PropertyMgr.getInt("GAME_WIDTH");
     public static final int GAME_HEIGHT=PropertyMgr.getInt("GAME_HEIGHT");
 
@@ -50,6 +52,10 @@ public class TankFrame extends Frame {
 
         gm.paint(g);
 
+    }
+
+    public Tank getMainTank() {
+        return null;
     }
 
     class MyKeyListener extends KeyAdapter{ //获取键盘
@@ -131,5 +137,6 @@ public class TankFrame extends Frame {
                 if(bD) gm.getMainTank().setDir(Dir.DOWN);
             }
         }
+
     }
 }

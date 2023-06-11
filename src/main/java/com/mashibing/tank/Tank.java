@@ -5,6 +5,7 @@ import com.mashibing.facade.GameObject;
 
 import java.awt.*;
 import java.util.Random;
+import java.util.UUID;
 
 public class Tank extends GameObject {
 
@@ -25,6 +26,8 @@ public class Tank extends GameObject {
     private Dir dir = Dir.DOWN;
 
     int oldX,oldY;
+
+    UUID id=UUID.randomUUID();
 
     public Tank(int x, int y, Dir dir,Group group) {
         this.x = x;
@@ -190,4 +193,13 @@ public class Tank extends GameObject {
     public void setGroup(Group group) {
         this.group = group;
     }
+
+    public UUID getId() {
+        return id;
+    }
+
+    public void setId(UUID id) {
+        this.id = id;
+    }
+
 }
